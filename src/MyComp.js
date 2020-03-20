@@ -1,37 +1,54 @@
-import React, { useState, useEffect } from "react"
-import Example from "./plotBar.js"
+import React, { useState, useEffect } from "react";
+import Example from "./plotBar.js";
+import styled from "styled-components";
+// import Container from "./plotBar.js";
+// import Item from "./plotBar.js";
+
+const Item = styled(Example)``;
+
+const Container = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  background: lightgray;
+  padding: 0.5rem;
+  ${Item} {
+    margin: 0.5rem;
+    padding: 1rem;
+    background: white;
+  }
+`;
 
 function getJson() {
   return fetch("http://secstat.info/testthechartdata3.json")
     .then(response => response.json())
     .catch(error => {
-      console.error(error)
-    })
+      console.error(error);
+    });
 }
 
 const MyComp = () => {
-  const [list, setList] = useState([])
+  const [list, setList] = useState([]);
 
   useEffect(() => {
-    getJson().then(list => setList(list))
-  }, [])
+    getJson().then(list => setList(list));
+  }, []);
 
   return (
-    <div>
+    <Container>
       {list.map((data, index) => (
-        <Example
+        <Item
           key={index}
           data={data.map(({ id, count }) => ({
             x: id,
-            y: count,
+            y: count
           }))}
         />
       ))}
-    </div>
-  )
-}
+    </Container>
+  );
+};
 
-export default MyComp
+export default MyComp;
 
 //   return (
 //     <ul>

@@ -9,9 +9,9 @@ import {
   VerticalBarSeries
 } from "react-vis";
 
-export default function Example({ data }) {
+export default function Example({ data, className }) {
   return (
-    <XYPlot margin={{ bottom: 70 }} xType="ordinal" width={300} height={300}>
+    <XYPlot className={className} xType="ordinal" width={200} height={200}>
       <VerticalGridLines />
       <HorizontalGridLines />
       <XAxis tickLabelAngle={-45} />
